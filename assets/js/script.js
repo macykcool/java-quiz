@@ -79,10 +79,43 @@ function clearStatusClass(element) {
 
 const questions = [
     {
-        question: 'What is Java?',
+        question: 'What will the following code return: Boolean(10 > 9)?',
         answers: [
-            { text: 'two' , correct: true },
-            { text: 'one' , correct: false }
+            { text: 'True' , correct: true },
+            { text: 'False' , correct: false }
+        ]
+    }, {
+        question: 'How does a WHILE loop start?',
+        answers: [
+            { text: 'while (i <= 10)' , correct: true },
+            { text: 'while (i <= 10 ,i++)' , correct: false },
+            { text: 'while i = 1 to 10' , correct: false },
+            { text: 'YL' , correct: false }
+        ]
+    },
+    {
+        question: 'Which operator is used to assign a value to a variable?',
+        answers: [
+            { text: '&' , correct: false },
+            { text: '*' , correct: false },
+            { text: '=' , correct: true },
+            { text: '-' , correct: false }
+        ]
+    },
+    {
+        question: 'How to write an IF statement in JavaScript?',
+        answers: [
+            { text: 'if (i<>5)' , correct: false },
+            { text: 'if (i !=5)' , correct: true },
+            { text: 'if i=!5' , correct: false },
+            { text: 'if 👁 !' , correct: false }
+        ]
+    },
+    {
+        question: 'Is JavaScript case-sensitive?',
+        answers: [
+            { text: 'Yes' , correct: true },
+            { text: 'no' , correct: false }
         ]
     }
 ]    
