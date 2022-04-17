@@ -29,7 +29,7 @@ function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
-        button.innerText - answer.text
+        button.innerText = answer.text
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
@@ -81,8 +81,8 @@ const questions = [
     {
         question: 'What is Java?',
         answers: [
-            { text: '4' , correct: true },
-            { text: '22' , correct: false }
+            { text: 'two' , correct: true },
+            { text: 'one' , correct: false }
         ]
     }
 ]    
