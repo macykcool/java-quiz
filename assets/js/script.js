@@ -4,7 +4,7 @@ const nextButton = document.getElementById('next-btn')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
-let shuffledQuestions, currentQuestionIndex
+const shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -13,7 +13,6 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
-    console.log('Started')
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
@@ -23,12 +22,12 @@ function startGame() {
 
 function setNextQuestion() {
     resetState()
-    showQuestion(shuddlesQuestions[currentQuestionIndex])
+    showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
 function showQuestion(question) {
     questionElement.innerText = question.question
-    questions.answers.forEach(answer => {
+    question.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerText - answer.text
         button.classList.add('btn')
@@ -43,12 +42,12 @@ function showQuestion(question) {
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild() {
-       answerButtonsElement.removeChild
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
        (answerButtonsElement.firstChild)
     }
-}
-
+    }
+    
 function selectAnswer(e) {
     const selectedButton = e.target 
     const correct = selectedButton.dataset.correct
@@ -58,11 +57,11 @@ function selectAnswer(e) {
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
-    } else }
-        startButton.innertext = 'Restart'
+    } else {
+        startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
     }
-
+}
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -85,31 +84,5 @@ const questions = [
             {text: '4', correct: true },
             {text: '22', correct: false }
         ]
-    },
-    {
-        question: 'What is karafe',
-        answers: [
-            {text: '4', correct: true },
-            {text: '22', correct: false }
-        ]
-    },  {
-        question: 'What is life',
-        answers: [
-            {text: '4', correct: true },
-            {text: '22', correct: false }
-        ]
-    },  {
-        question: 'What is hate',
-        answers: [
-            {text: '4', correct: true },
-            {text: '22', correct: false }
-        ]
-    },  {
-        question: 'What is love',
-        answers: [
-            {text: '4', correct: true },
-            {text: '22', correct: false }
-        ]
     }
-
 ]
