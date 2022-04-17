@@ -4,7 +4,7 @@ const nextButton = document.getElementById('next-btn')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
-const shuffledQuestions, currentQuestionIndex
+let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -79,10 +79,10 @@ function clearStatusClass(element) {
 
 const questions = [
     {
-        question: 'What is Java',
+        question: 'What is Java?',
         answers: [
-            {text: '4', correct: true },
-            {text: '22', correct: false }
+            { text: '4' , correct: true },
+            { text: '22' , correct: false }
         ]
     }
-]
+]    
