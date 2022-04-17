@@ -1,6 +1,6 @@
 const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
+const nextButton = document.getElementById('next-btn')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
@@ -83,33 +83,33 @@ const questions = [
         question: 'What is Java',
         answers: [
             {text: '4', correct: true },
-            {text: '22', correct: false}
+            {text: '22', correct: false }
         ]
     },
     {
         question: 'What is karafe',
         answers: [
             {text: '4', correct: true },
-            {text: '22', correct: false}
+            {text: '22', correct: false }
         ]
     },  {
         question: 'What is life',
         answers: [
             {text: '4', correct: true },
-            {text: '22', correct: false}
+            {text: '22', correct: false }
         ]
     },  {
         question: 'What is hate',
         answers: [
             {text: '4', correct: true },
-            {text: '22', correct: false}
+            {text: '22', correct: false }
         ]
     },  {
         question: 'What is love',
         answers: [
             {text: '4', correct: true },
-            {text: '22', correct: false}
+            {text: '22', correct: false }
         ]
-    },
+    }
 
 ]
