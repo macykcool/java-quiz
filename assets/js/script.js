@@ -1,5 +1,7 @@
 console.dir(window.document);
 
+
+
 // adding functionality to the html elements
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -14,12 +16,33 @@ const nextButton = document.getElementById('next-btn')
 //randomizes questions
 let shuffledQuestions, currentQuestionIndex
 
-//setting up the counter
-let counter = 0
-setInterval (() => {
-    counter++
-    consolelog(counter)
-}, 1000)
+// // //setting up the timer
+var timerEl = document.getElementById('timer');
+var message =
+    'TIMES UP';
+var words = message;
+
+
+// scope issue declared in global scope or accessible point, in a function not access
+var timeLeft = 60;
+
+function timer() {
+}
+
+var timeInterval = setInterval(function () {
+    if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + '  seconds remaining';
+        timeLeft--;
+    } else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+    } else {
+        timerEl.textContent = '';
+        clearInterval(timeInterval);
+    }
+}, 1000);
+
+
 
 
 //click event to startGame function AND TIMER
@@ -70,13 +93,13 @@ function resetState() {
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild
-       (answerButtonsElement.firstChild)
+            (answerButtonsElement.firstChild)
     }
-    }
-    
-    //need to log the answer selection with json
+}
+
+//need to log the answer selection with json
 function selectAnswer(e) {
-    const selectedButton = e.target 
+    const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
@@ -86,7 +109,7 @@ function selectAnswer(e) {
     //THIS IS WHEN NEXT QUESTION SHOULD COME UP
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
-    } 
+    }
     // IF OUT OF QUESTIONS OR TIME NEED A GAMEOVER ALERT
     //AFTER GAME OVER ALERT, RECORD SCORES OR RESTART
     else {
@@ -94,9 +117,9 @@ function selectAnswer(e) {
         startButton.classList.remove('hide')
     }
 }
- // this is result of answer
- //NEED TO ALERT CORRECT OR WRONG
- // CORRECT OR WRONG RESULT NEEDS TO ADJUST TIMER
+// this is result of answer
+//NEED TO ALERT CORRECT OR WRONG
+// CORRECT OR WRONG RESULT NEEDS TO ADJUST TIMER
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -130,43 +153,43 @@ const questions = [
     {
         question: 'What will the following code return: Boolean(10 > 9)?',
         answers: [
-            { text: 'True' , correct: true },
-            { text: 'False' , correct: false }
+            { text: 'True', correct: true },
+            { text: 'False', correct: false }
         ]
     }, {
         question: 'How does a WHILE loop start?',
         answers: [
-            { text: 'while (i <= 10)' , correct: true },
-            { text: 'while (i <= 10 ,i++)' , correct: false },
-            { text: 'while i = 1 to 10' , correct: false },
-            { text: 'YL' , correct: false }
+            { text: 'while (i <= 10)', correct: true },
+            { text: 'while (i <= 10 ,i++)', correct: false },
+            { text: 'while i = 1 to 10', correct: false },
+            { text: 'YL', correct: false }
         ]
     },
     {
         question: 'Which operator is used to assign a value to a variable?',
         answers: [
-            { text: '&' , correct: false },
-            { text: '*' , correct: false },
-            { text: '=' , correct: true },
-            { text: '-' , correct: false }
+            { text: '&', correct: false },
+            { text: '*', correct: false },
+            { text: '=', correct: true },
+            { text: '-', correct: false }
         ]
     },
     {
         question: 'How to write an IF statement in JavaScript?',
         answers: [
-            { text: 'if (i<>5)' , correct: false },
-            { text: 'if (i !=5)' , correct: true },
-            { text: 'if i=!5' , correct: false },
-            { text: 'if 👁 !' , correct: false }
+            { text: 'if (i<>5)', correct: false },
+            { text: 'if (i !=5)', correct: true },
+            { text: 'if i=!5', correct: false },
+            { text: 'if 👁 !', correct: false }
         ]
     },
     {
         question: 'Is JavaScript case-sensitive?',
         answers: [
-            { text: 'Yes' , correct: true },
-            { text: 'no' , correct: false }
+            { text: 'Yes', correct: true },
+            { text: 'no', correct: false }
         ]
     }
-]    
+]
 
 
