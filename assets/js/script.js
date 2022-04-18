@@ -7,10 +7,6 @@ const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-
-//do not need a next button, SO NEED TO ELIMINATE BTN OR CHANGE
-//CLICK EVENT TO AFTER THE RESULT APPEARS
-//THATS AN ALERT I THINK
 const nextButton = document.getElementById('next-btn')
 
 //randomizes questions
@@ -19,12 +15,10 @@ let shuffledQuestions, currentQuestionIndex
 // // //setting up the timer
 var timerEl = document.getElementById('timer');
 var message =
-    'TIMES UP';
-var words = message;
+    'TIMES UP, SCRUB';
 
-
-// scope issue declared in global scope or accessible point, in a function not access
-var timeLeft = 60;
+// i spent all my time trying to figure out how to get the timer to start when start function was triggered by click event
+var timeLeft = 30;
 
 function timer() {
 }
@@ -37,41 +31,37 @@ var timeInterval = setInterval(function () {
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
     } else {
-        timerEl.textContent = '';
+        timerEl.textContent = message;
         clearInterval(timeInterval);
     }
 }, 1000);
 
 
-
-
-//click event to startGame function AND TIMER
 startButton.addEventListener('click', startGame)
 
-//need the event of an answer click to show result, AND GO TO NEXT QUESTION
+//did not want a next button, needed this to happen after answer was selected and result appeared
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
 
-// START SHOULD START TIMER
-//this starts the game by pulling at random a question. 
+
 function startGame() {
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
-}
-//this pulls up the question container
-function setNextQuestion() {
-    resetState()
-    // STARTS TIMER
-    //COUNTER =60;
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    //felt like timer function should have gone here. 
 }
 
-//
+function setNextQuestion() {
+    resetState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+    //adjust timer based off question answer result
+}
+
+
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
@@ -86,10 +76,8 @@ function showQuestion(question) {
     })
 }
 
-//remove click event
 function resetState() {
     clearStatusClass(document.body)
-    //need to hide result and it not be an event listener
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild
@@ -97,7 +85,6 @@ function resetState() {
     }
 }
 
-//need to log the answer selection with json
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -105,50 +92,35 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-
-    //THIS IS WHEN NEXT QUESTION SHOULD COME UP
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     }
-    // IF OUT OF QUESTIONS OR TIME NEED A GAMEOVER ALERT
-    //AFTER GAME OVER ALERT, RECORD SCORES OR RESTART
     else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
     }
 }
-// this is result of answer
-//NEED TO ALERT CORRECT OR WRONG
-// CORRECT OR WRONG RESULT NEEDS TO ADJUST TIMER
+
+//result reaction
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct')
-        //ADD TIME
-        //COUNTER -= 10;
+   //add text with correct
     } else {
         element.classList.add('wrong')
-        //REMOVE TIME 
-        //COUNTER += 10;
+      //add text with wrong
     }
 }
 
-// AFTER ALERT
-//this is when a new question comes up, changes the display back 
+//clears result reaction
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
 
+//questions for quiz
 
-
-//need to add a score page and timer
-
-//game is over CAN RECORD initials and score, AND OR RESTART
-
-// can visit score page before start
-
-//the quiz questions
 const questions = [
     {
         question: 'What will the following code return: Boolean(10 > 9)?',
@@ -191,5 +163,3 @@ const questions = [
         ]
     }
 ]
-
-
